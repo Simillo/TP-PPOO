@@ -23,4 +23,8 @@ public class Empresa {
         _funcionarios.remove(funcionarioTemp);
         return funcionarioTemp;
     }
+
+    public String get_nome() {
+        return this._nome;
+    }
 }
