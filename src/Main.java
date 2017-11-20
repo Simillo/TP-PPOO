@@ -23,21 +23,42 @@ public class Main {
             } else {
                 System.out.println("(a) Adicionar uma empresa:");
                 System.out.println("(r) Adicionar uma rodovia:");
-                System.out.println("(f) Adicionar um funcion√°rio:");
+                System.out.println("(f) Adicionar um funcion·rio:");
                 System.out.println("(c) Adicionar um acidente:");
-                System.out.println("(p) Adicionar um ped√°gio:");
-                System.out.println("(lp) Listar ped√°gios:");
+                System.out.println("(p) Adicionar um pedgio:");
+                System.out.println("(le) Listar empresas:");
+                System.out.println("(lr) Listar rodovias:");
+                System.out.println("(lp) Listar ped·gios:");
                 System.out.println("(s) Para selecionar uma empresa:");
-                op = sc.next();
+                op = sc.nextLine();
                 Empresa empresaTemp = null;
                 Rodovia rodoviaTemp = null;
                 Acidente acidenteTemp = null;
                 Funcionario funcionarioTemp = null;
                 Pedagio pedagioTemp = null;
                 switch (op) {
+                	case "le":
+                		if (empresas.size() == 0) {
+                			System.out.println("Nenhuma empresa cadastrada!");
+                		} else {
+                			empresas.forEach(e -> {
+                				e.mostrarDados();
+                				System.out.println("\n-------\n");
+                			});
+                		}
+                		break;
+                	case "lr":
+                		if (rodovias.size() == 0) {
+                			System.out.println("Nenhuma rodovia cadastrada!");
+                		} else {
+                			rodovias.forEach(r -> {
+                				r.mostrarDados();
+                			});
+                		}
+                		break;
                     case "lp":
                         if (rodovias.size() == 0) {
-                            System.out.println("√â necess√°rio adiconar ao menos uma rodovia!");
+                            System.out.println("… necess·rio adicionar ao menos uma rodovia!");
                         } else {
                             rodoviaTemp = selecionarRodovia(rodovias);
                             rodoviaTemp.listarPedagios();
@@ -45,12 +66,12 @@ public class Main {
                         break;
                     case "p":
                         if (rodovias.size() == 0) {
-                            System.out.println("√â necess√°rio adiconar ao menos uma rodovia!");
+                            System.out.println("… necess·rio adiconar ao menos uma rodovia!");
                         } else {
                             pedagioTemp = addPedagio();
                             rodoviaTemp = selecionarRodovia(rodovias);
                             rodoviaTemp.addPedagio(pedagioTemp);
-                            System.out.println("Ped√°gio adicionado com sucesso!");
+                            System.out.println("Ped·gio adicionado com sucesso!");
                         }
                         break;
                     case "c":
@@ -60,7 +81,7 @@ public class Main {
                             rodoviaTemp.aumentarAcidentes(acidenteTemp);
                             System.out.println("Acidente adicionado com sucesso!");
                         } else {
-                            System.out.println("√â necess√°rio adicionar ao menos uma rodovia!");
+                            System.out.println("… necess·rio adicionar ao menos uma rodovia!");
                         }
                         break;
                     case "a":
@@ -78,11 +99,11 @@ public class Main {
                         }
                         index = sc.nextInt();
                         if (index > empresas.size() || index <= 0) {
-                            System.out.println("Op√ß√£o inv√°lida!");
+                            System.out.println("Empresa inv·lida!");
                         } else {
                             empresaTemp = empresas.get(index - 1);
-                            System.out.println("(a) Adicionar funcion√°rio;");
-                            System.out.println("(d) demitir funcion√°rio;");
+                            System.out.println("(a) Adicionar funcion·rio;");
+                            System.out.println("(d) Demitir funcion·rio;");
                             op = sc.next();
                             switch (op) {
                                 case "a":
@@ -91,7 +112,7 @@ public class Main {
                                     System.out.println(funcionarioTemp.get_nome() + " cadastrado com sucesso!");
                                     break;
                                 case "d":
-                                    System.out.println("Digite o CPF do funcion√°rio a ser demitido:");
+                                    System.out.println("Digite o CPF do funcion·rio a ser demitido:");
                                     String demitirCPF = sc.nextLine();
                                     funcionarioTemp = empresaTemp.demitirFuncionario(demitirCPF);
                                     System.out.println(funcionarioTemp.get_nome() + " demitido com sucesso!");
@@ -106,20 +127,22 @@ public class Main {
                 }
             }
         }
+        sc.close();
     }
 
     public static Funcionario addFuncionario () {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nome do funcion√°rio:");
+        System.out.println("Nome do funcion·rio:");
         String nome = sc.nextLine();
-        System.out.println("CPF do funcion√°rio:");
-        String cpf = sc.nextLine();
-        System.out.println("Idade do funcion√°rio:");
-        int idade = sc.nextInt();
-        System.out.println("Sal√°rio do funcion√°rio:");
-        double salario = sc.nextDouble();
-        System.out.println("Cargo do funcion√°rio:");
+        System.out.println("Cargo do funcion·rio:");
         String cargo = sc.nextLine();
+        System.out.println("CPF do funcion·rio:");
+        String cpf = sc.nextLine();
+        System.out.println("Idade do funcion·rio:");
+        int idade = sc.nextInt();
+        System.out.println("Sal·rio do funcion·rio:");
+        double salario = sc.nextDouble();
+        sc.close();
         return new Funcionario(nome, cpf, idade, salario, cargo);
     }
 
@@ -127,6 +150,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nome da empresa:");
         String nome = sc.nextLine();
+        sc.close();
         return new Empresa(nome);
     }
 
@@ -134,20 +158,21 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nome da rodovida:");
         String nome = sc.nextLine();
-        System.out.println("Extens√£o da rodovia:");
+        System.out.println("Extens„o da rodovia:");
         double extensao = sc.nextDouble();
         System.out.println("Selecione uma das empresas cadastradas:");
         int index = -1;
-        while (index <= 0 || index > empresas.size()) {
+        while (index < 0 || index >= empresas.size()) {
             for (int i = 0; i < empresas.size(); i++) {
-                System.out.println("(" + (i + 1) + ")" + " empresa " + empresas.get(i).get_nome());
+                System.out.println("(" + i + ")" + " empresa " + empresas.get(i).get_nome());
             }
             index = sc.nextInt();
             if (index <= 0 || index > empresas.size()) {
-                System.out.println("Empresa inv√°lida!");
+                System.out.println("Empresa inv·lida!");
             }
         }
-        return new Rodovia(nome, extensao, empresas.get(index - 1));
+        sc.close();
+        return new Rodovia(nome, extensao, empresas.get(index));
     }
 
     public static Acidente addAcidente() {
@@ -156,11 +181,11 @@ public class Main {
         int mortos = sc.nextInt();
         System.out.println("Quanditade de feridos:");
         int feridos = sc.nextInt();
-        System.out.println("Descri√ß√£o do acidente:");
+        System.out.println("DescriÁ„o do acidente:");
         String descricao = sc.nextLine();
-        System.out.println("Data do in√≠cio do acidente (formato \"dd/mm/yyyy\"):");
+        System.out.println("Data do inÌcio do acidente (formato \"dd/mm/yyyy\"):");
         String dataInicioS = sc.nextLine();
-        System.out.println("Data do fim do acidente e libera√ß√£o do trecho (formato \"dd/mm/yyyy\"):");
+        System.out.println("Data do fim do acidente e liberaÁ„o do trecho (formato \"dd/mm/yyyy\"):");
         String dataFimS = sc.nextLine();
         DateFormat dataFormato = DateFormat.getInstance();
         Date dataInicio = null;
@@ -171,23 +196,25 @@ public class Main {
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
+        sc.close();
         return new Acidente(feridos, mortos, descricao, dataInicio, dataFim);
     }
 
     public static Pedagio addPedagio() {
         Scanner sc = new Scanner(System.in);
         HashMap hashPedagio = new HashMap();
-        System.out.println("KM do ped√°gio");
+        System.out.println("KM do ped·gio");
         int km = sc.nextInt();
         System.out.println("Digite os valores:");
         EVeiculo veiculo[] = {EVeiculo.MOTO, EVeiculo.CARRO, EVeiculo.PICKUP, EVeiculo.CAMINHAO};
         String veiculoNome[] = {"moto", "carro", "pickup", "caminh√£o"};
         double valores[] = new double[4];
         for(int i = 0; i < 4; ++i) {
-            System.out.println("Pre√ßo do ped√°gio para " + veiculoNome[i] + ":");
+            System.out.println("PreÁo do ped·gio para " + veiculoNome[i] + ":");
             double valor = sc.nextDouble();
             hashPedagio.put(veiculo[i], valor);
         }
+        sc.close();
         return new Pedagio(km, hashPedagio);
     }
 
@@ -200,9 +227,10 @@ public class Main {
             }
             index = sc.nextInt();
             if (index <= 0 || index > rodovias.size()) {
-                System.out.println("Empresa inv√°lida!");
+                System.out.println("Empresa inv·lida!");
             }
         }
+        sc.close();
         return rodovias.get(index - 1);
     }
 }

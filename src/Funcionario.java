@@ -20,4 +20,12 @@ public class Funcionario {
     public String get_nome() {
         return this._nome;
     }
+    
+    public void mostrarDados() {
+    	System.out.println("Nome do funcionário: " + this._nome);
+    	System.out.println("CPF do funcionário: " + this._cpf);
+    	System.out.println("Idade do funcionário: " + this._idade);
+    	System.out.println("Salário do funcionário: " + this._salario);
+    	System.out.println("Cargo do funcionário: " + this._cargo);
+    }
 }

@@ -27,4 +27,12 @@ public class Empresa {
     public String get_nome() {
         return this._nome;
     }
+    
+    public void mostrarDados() {
+    	System.out.println("Nome da empresa: " + this._nome);
+    	System.out.println("---Funcionários---");
+    	this._funcionarios.forEach(f -> {
+    		f.mostrarDados();
+    	});
+    }
 }

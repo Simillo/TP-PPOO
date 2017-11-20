@@ -30,6 +30,19 @@ public class Rodovia {
     public String get_nome() {
         return this._nome;
     }
+    
+    public void mostrarDados() {
+    	System.out.println("Nome da rodovia: " + this._nome);
+    	System.out.println("Extensão da rodovia: " + this._extensao);
+    	System.out.println("Empresa dona da rodovia: "+ this._empresa.get_nome());
+    	this._acidentes.forEach(a -> {
+    		a.mostrarDados();
+    	});
+    	this._pedagios.forEach(p -> {
+    		p.mostrarDados();
+    	});
+    	
+    }
 
     public void listarPedagios () {
         this._pedagios.forEach(p -> {

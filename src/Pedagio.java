@@ -24,4 +24,12 @@ public class Pedagio {
     public HashMap get_valores() {
         return this._valores;
     }
+    
+    public void mostrarDados() {
+    	System.out.println("KM do pedágio:" + this._km);
+    	System.out.println("Valor para moto: " + this._valores.get(EVeiculo.MOTO));
+    	System.out.println("Valor para carro: "+ this._valores.get(EVeiculo.CARRO));
+    	System.out.println("Valor para pickup: "+ this._valores.get(EVeiculo.PICKUP));
+    	System.out.println("Valor para caminhão: "+ this._valores.get(EVeiculo.CAMINHAO));
+    }
 }
