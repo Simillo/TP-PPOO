@@ -18,7 +18,7 @@ public class Main {
                 empresas.add(novaEmpresa);
                 System.out.println(nomeEmpresa + " cadastrada com sucesso!");
             } else {
-                System.out.println("(e) Modo empresa:");
+                System.out.println("Digite :");
                 System.out.println("(e) Modo empresa:");
             }
         }
