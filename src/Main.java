@@ -32,8 +32,20 @@ public class Main {
                             System.out.println("(" + (i + 1) + ")" + " empresa " + empresas.get(i).get_nome());
                         }
                         index = sc.nextInt();
-                        Empresa empresaTemp = empresas.get(index - 1);
-
+                        if (index > empresas.size() || index <= 0) {
+                            System.out.println("Opção inválida!");
+                        } else {
+                            Empresa empresaTemp = empresas.get(index - 1);
+                            System.out.println("(a) Adicionar funcionário;");
+                            System.out.println("(d) demitir funcionário;");
+                            op = sc.next();
+                            switch (op) {
+                                case "a":
+                                    break;
+                                case "d":
+                                    break;
+                            }
+                        }
                         break;
                 }
             }
