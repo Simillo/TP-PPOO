@@ -1,8 +1,7 @@
 
 import java.util.HashMap;
-import java.util.List;
 
-enum Veiculo {
+enum EVeiculo {
     MOTO,
     CARRO,
     PICKUP,
@@ -16,5 +15,13 @@ public class Pedagio {
     public Pedagio (int km, HashMap valores) {
         this._km = km;
         this._valores = valores;
+    }
+
+    public int get_km() {
+        return this._km;
+    }
+
+    public HashMap get_valores() {
+        return this._valores;
     }
 }

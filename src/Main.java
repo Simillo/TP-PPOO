@@ -1,12 +1,6 @@
-import com.sun.jndi.toolkit.ctx.AtomicDirContext;
-import com.sun.nio.sctp.PeerAddressChangeNotification;
-
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -32,13 +26,33 @@ public class Main {
                 System.out.println("(f) Adicionar um funcionário:");
                 System.out.println("(c) Adicionar um acidente:");
                 System.out.println("(p) Adicionar um pedágio:");
+                System.out.println("(lp) Listar pedágios:");
                 System.out.println("(s) Para selecionar uma empresa:");
                 op = sc.next();
                 Empresa empresaTemp = null;
                 Rodovia rodoviaTemp = null;
                 Acidente acidenteTemp = null;
                 Funcionario funcionarioTemp = null;
+                Pedagio pedagioTemp = null;
                 switch (op) {
+                    case "lp":
+                        if (rodovias.size() == 0) {
+                            System.out.println("É necessário adiconar ao menos uma rodovia!");
+                        } else {
+                            rodoviaTemp = selecionarRodovia(rodovias);
+                            rodoviaTemp.listarPedagios();
+                        }
+                        break;
+                    case "p":
+                        if (rodovias.size() == 0) {
+                            System.out.println("É necessário adiconar ao menos uma rodovia!");
+                        } else {
+                            pedagioTemp = addPedagio();
+                            rodoviaTemp = selecionarRodovia(rodovias);
+                            rodoviaTemp.addPedagio(pedagioTemp);
+                            System.out.println("Pedágio adicionado com sucesso!");
+                        }
+                        break;
                     case "c":
                         if (rodovias.size() != 0) {
                             acidenteTemp = addAcidente();
@@ -158,6 +172,23 @@ public class Main {
             ex.printStackTrace();
         }
         return new Acidente(feridos, mortos, descricao, dataInicio, dataFim);
+    }
+
+    public static Pedagio addPedagio() {
+        Scanner sc = new Scanner(System.in);
+        HashMap hashPedagio = new HashMap();
+        System.out.println("KM do pedágio");
+        int km = sc.nextInt();
+        System.out.println("Digite os valores:");
+        EVeiculo veiculo[] = {EVeiculo.MOTO, EVeiculo.CARRO, EVeiculo.PICKUP, EVeiculo.CAMINHAO};
+        String veiculoNome[] = {"moto", "carro", "pickup", "caminhão"};
+        double valores[] = new double[4];
+        for(int i = 0; i < 4; ++i) {
+            System.out.println("Preço do pedágio para " + veiculoNome[i] + ":");
+            double valor = sc.nextDouble();
+            hashPedagio.put(veiculo[i], valor);
+        }
+        return new Pedagio(km, hashPedagio);
     }
 
     public static Rodovia selecionarRodovia(List<Rodovia> rodovias) {

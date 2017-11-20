@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Rodovia {
@@ -28,5 +29,16 @@ public class Rodovia {
 
     public String get_nome() {
         return this._nome;
+    }
+
+    public void listarPedagios () {
+        this._pedagios.forEach(p -> {
+            System.out.println(p.get_km() + ":");
+            final HashMap valores = p.get_valores();
+            System.out.println("Moto: " + valores.get(EVeiculo.MOTO));
+            System.out.println("Carro: " + valores.get(EVeiculo.CARRO));
+            System.out.println("Pickup: " + valores.get(EVeiculo.PICKUP));
+            System.out.println("Caminhao: " + valores.get(EVeiculo.CAMINHAO));
+        });
     }
 }
