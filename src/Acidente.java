@@ -7,5 +7,11 @@ public class Acidente {
     private Date _inicio;
     private Date _fim;
 
-    public Acidente ()
+    public Acidente (int feridos,  int mortos, String descricao, Date inicio, Date fim) {
+        this._feridos = feridos;
+        this._mortos = mortos;
+        this._descricao = descricao;
+        this._inicio = inicio;
+        this._fim = fim;
+    }
 }

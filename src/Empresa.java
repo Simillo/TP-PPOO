@@ -13,4 +13,14 @@ public class Empresa {
     public void addFuncionario (Funcionario funcionario) {
         this._funcionarios.add(funcionario);
     }
+
+    public Funcionario demitirFuncionario (String cpf) {
+        Funcionario funcionarioTemp = _funcionarios.stream()
+                                      .filter(f -> f.get_cpf()
+                                      .equals(cpf))
+                                      .findFirst()
+                                      .get();
+        _funcionarios.remove(funcionarioTemp);
+        return funcionarioTemp;
+    }
 }

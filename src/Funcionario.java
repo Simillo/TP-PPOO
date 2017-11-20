@@ -12,4 +12,8 @@ public class Funcionario {
         this._salario = salario;
         this._cargo = cargo;
     }
+
+    public String get_cpf() {
+        return this._cpf;
+    }
 }

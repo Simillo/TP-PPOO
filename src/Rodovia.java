@@ -4,16 +4,14 @@ import java.util.List;
 public class Rodovia {
     private String _nome;
     private double _extensao;
-    private List<Acidente> _acidentes;
+    private List<Acidente> _acidentes = new ArrayList<Acidente>();
     private Empresa _empresa;
-    private List<Pedagio> _pedagios;
+    private List<Pedagio> _pedagios = new ArrayList<Pedagio>();
 
     public Rodovia (String nome, double extensao, Empresa empresa) {
         this._nome = nome;
         this._extensao = extensao;
         this._empresa = empresa;
-        this._acidentes = new ArrayList<Acidente>();
-        this._pedagios = new ArrayList<Pedagio>();
     }
 
     public void set_extensao(double _extensao) {
