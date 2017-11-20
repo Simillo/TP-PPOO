@@ -21,7 +21,7 @@ public class Main {
         while(!flagSystem) {
             if (empresas.size() == 0) {
                 System.out.println("Cadastre uma Empresa:");
-                System.out.println("Nome:");
+                System.out.println("Nome da empresa:");
                 String nomeEmpresa = sc.nextLine();
                 Empresa novaEmpresa = new Empresa(nomeEmpresa);
                 empresas.add(novaEmpresa);
@@ -29,12 +29,15 @@ public class Main {
             } else {
                 System.out.println("(a) Adicionar uma empresa:");
                 System.out.println("(r) Adicionar uma rodovia:");
+                System.out.println("(f) Adicionar um funcionário:");
                 System.out.println("(c) Adicionar um acidente:");
+                System.out.println("(p) Adicionar um pedágio:");
                 System.out.println("(s) Para selecionar uma empresa:");
                 op = sc.next();
                 Empresa empresaTemp = null;
                 Rodovia rodoviaTemp = null;
                 Acidente acidenteTemp = null;
+                Funcionario funcionarioTemp = null;
                 switch (op) {
                     case "c":
                         if (rodovias.size() != 0) {
@@ -56,7 +59,6 @@ public class Main {
                         rodovias.add(rodoviaTemp);
                         break;
                     case "s":
-                        int contador = 1;
                         for (int i = 0; i < empresas.size(); i++) {
                             System.out.println("(" + (i + 1) + ")" + " empresa " + empresas.get(i).get_nome());
                         }
@@ -68,18 +70,17 @@ public class Main {
                             System.out.println("(a) Adicionar funcionário;");
                             System.out.println("(d) demitir funcionário;");
                             op = sc.next();
-                            Funcionario funcTemp = null;
                             switch (op) {
                                 case "a":
-                                    funcTemp = addFuncionario();
-                                    empresaTemp.addFuncionario(funcTemp);
-                                    System.out.println(funcTemp.get_nome() + " cadastrado com sucesso!");
+                                    funcionarioTemp = addFuncionario();
+                                    empresaTemp.addFuncionario(funcionarioTemp);
+                                    System.out.println(funcionarioTemp.get_nome() + " cadastrado com sucesso!");
                                     break;
                                 case "d":
                                     System.out.println("Digite o CPF do funcionário a ser demitido:");
                                     String demitirCPF = sc.nextLine();
-                                    funcTemp = empresaTemp.demitirFuncionario(demitirCPF);
-                                    System.out.println(funcTemp.get_nome() + " demitido com sucesso!");
+                                    funcionarioTemp = empresaTemp.demitirFuncionario(demitirCPF);
+                                    System.out.println(funcionarioTemp.get_nome() + " demitido com sucesso!");
                                     break;
                                 default:
                                     break;
