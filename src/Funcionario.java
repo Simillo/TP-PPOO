@@ -16,4 +16,8 @@ public class Funcionario {
     public String get_cpf() {
         return this._cpf;
     }
+
+    public String get_nome() {
+        return this._nome;
+    }
 }
