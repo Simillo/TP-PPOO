@@ -25,4 +25,8 @@ public class Rodovia {
     public void addPedagio (Pedagio pedagio) {
         this._pedagios.add(pedagio);
     }
+
+    public String get_nome() {
+        return this._nome;
+    }
 }

@@ -1,4 +1,10 @@
+import com.sun.jndi.toolkit.ctx.AtomicDirContext;
+import com.sun.nio.sctp.PeerAddressChangeNotification;
+
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,11 +29,23 @@ public class Main {
             } else {
                 System.out.println("(a) Adicionar uma empresa:");
                 System.out.println("(r) Adicionar uma rodovia:");
+                System.out.println("(c) Adicionar um acidente:");
                 System.out.println("(s) Para selecionar uma empresa:");
                 op = sc.next();
                 Empresa empresaTemp = null;
                 Rodovia rodoviaTemp = null;
+                Acidente acidenteTemp = null;
                 switch (op) {
+                    case "c":
+                        if (rodovias.size() != 0) {
+                            acidenteTemp = addAcidente();
+                            rodoviaTemp = selecionarRodovia(rodovias);
+                            rodoviaTemp.aumentarAcidentes(acidenteTemp);
+                            System.out.println("Acidente adicionado com sucesso!");
+                        } else {
+                            System.out.println("É necessário adicionar ao menos uma rodovia!");
+                        }
+                        break;
                     case "a":
                         empresaTemp = addEmpresa();
                         empresas.add(empresaTemp);
@@ -115,5 +133,44 @@ public class Main {
             }
         }
         return new Rodovia(nome, extensao, empresas.get(index - 1));
+    }
+
+    public static Acidente addAcidente() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Quantidade de mortos:");
+        int mortos = sc.nextInt();
+        System.out.println("Quanditade de feridos:");
+        int feridos = sc.nextInt();
+        System.out.println("Descrição do acidente:");
+        String descricao = sc.nextLine();
+        System.out.println("Data do início do acidente (formato \"dd/mm/yyyy\"):");
+        String dataInicioS = sc.nextLine();
+        System.out.println("Data do fim do acidente e liberação do trecho (formato \"dd/mm/yyyy\"):");
+        String dataFimS = sc.nextLine();
+        DateFormat dataFormato = DateFormat.getInstance();
+        Date dataInicio = null;
+        Date dataFim = null;
+        try {
+            dataInicio = dataFormato.parse(dataInicioS);
+            dataFim = dataFormato.parse(dataFimS);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return new Acidente(feridos, mortos, descricao, dataInicio, dataFim);
+    }
+
+    public static Rodovia selecionarRodovia(List<Rodovia> rodovias) {
+        Scanner sc = new Scanner(System.in);
+        int index = -1;
+        while (index <= 0 || index > rodovias.size()) {
+            for (int i = 0; i < rodovias.size(); i++) {
+                System.out.println("(" + (i + 1) + ")" + " rodovia " + rodovias.get(i).get_nome());
+            }
+            index = sc.nextInt();
+            if (index <= 0 || index > rodovias.size()) {
+                System.out.println("Empresa inválida!");
+            }
+        }
+        return rodovias.get(index - 1);
     }
 }
