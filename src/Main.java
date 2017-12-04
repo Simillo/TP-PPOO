@@ -2,7 +2,17 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.*;
 /**
- * Classe MAIN
+ * <h1>Classe MAIN</h1>
+ * <h2>Trabalho prático de Práticas de Programação Orientada a Objetos.</h2>
+ * <ul>
+ *     <li>
+ *         Tema: Cadastro de concessionária de rodovias.
+ *     </li>
+ *     <li>
+ *         Classes: Main, Empresa, Rodovia, Pedagio, Funcionario e Acidentes.
+ *     </li>
+ * </ul>
+ * @author Simillo Nakai
  */
 public class Main {
 

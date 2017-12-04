@@ -28,3 +28,5 @@ hs_err_pid*
 docs/
 .classpath
 .project
+
+file.lst
