@@ -2,11 +2,6 @@
 import java.util.HashMap;
 
 /**
- * Classe do Pedágio.
- * Contém km (km da rodovia (localização)) e valores do pedágio.
- */
-
-/**
  * Enum EVeiculo.
  * Moto, carro, pickup e caminhão.
  */
@@ -17,6 +12,10 @@ enum EVeiculo {
     CAMINHAO
 }
 
+/**
+ * Classe do Pedágio.
+ * Contém km (km da rodovia (localização)) e valores do pedágio.
+ */
 public class Pedagio {
     private int _km;
     private HashMap _valores;
