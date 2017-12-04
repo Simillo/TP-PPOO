@@ -146,6 +146,10 @@ public class Main {
         }
     }
 
+    /**
+     * Método UI para pegar o CPF do funcionário a ser demitido.
+     * @return numero do cpf digitado.
+     */
     private static String promptCpf() {
         Scanner sc = new Scanner(System.in);
         System.out.println("CPF do funcionpario a ser demitido:");

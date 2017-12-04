@@ -31,22 +31,6 @@ public class Pedagio {
     }
 
     /**
-     * Método get do KM do pedágio.
-     * @return o KM do pedágio.
-     */
-    public int get_km() {
-        return this._km;
-    }
-
-    /**
-     * Método get dos valores do pedágio.
-     * @return um HashMap dos valores do pedágio.
-     */
-    public HashMap get_valores() {
-        return this._valores;
-    }
-
-    /**
      * Método para imprimir os dados do pedágio para o usuário.
      */
     public void mostrarDados() {
