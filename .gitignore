@@ -25,6 +25,10 @@ hs_err_pid*
 .idea
 /bin/
 
+*.html
+*.js
+package-list
+*.css
 
 .classpath
 .project
