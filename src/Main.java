@@ -44,6 +44,7 @@ public class Main {
                 System.out.println("(le) Listar empresas:");
                 System.out.println("(lr) Listar rodovias:");
                 System.out.println("(lp) Listar pedágios:");
+                System.out.println("(la) Listar acidentes:");
                 System.out.println("(s) Para selecionar uma empresa:");
                 op = sc.nextLine();
                 Empresa empresaTemp = null;
@@ -77,6 +78,17 @@ public class Main {
                         } else {
                             rodoviaTemp = selecionarRodovia(rodovias);
                             rodoviaTemp.listarPedagios();
+                        }
+                        break;
+                    case "la":
+                        if (rodovias.size() == 0) {
+                            System.out.println("É necessário adicionar ao menos uma rodovia!");
+                        } else {
+                            rodovias.forEach(r -> {
+                                r.get_acidentes().forEach(a -> {
+                                    a.mostrarDados();
+                                });
+                            });
                         }
                         break;
                     case "p":

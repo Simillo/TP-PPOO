@@ -23,6 +23,7 @@ public class Acidente {
         this._descricao = descricao;
         this._inicio = inicio;
         this._fim = fim;
+        this._vitimas = vitimas;
     }
 
     /**
@@ -30,6 +31,13 @@ public class Acidente {
      */
     public void mostrarDados() {
     	System.out.println("Quantidade de vítimas: " + this._qntVitimas);
+    	if (_qntVitimas > 0) {
+    	    System.out.println("------ Dados das vítimas ------");
+    	    _vitimas.forEach(v ->{
+    	        v.mostrarDados();
+                System.out.println("------------");
+            });
+        }
     	System.out.println("Descrição do acidente: " + this._descricao);
     	System.out.println("Data de início do acidente: "+ this._inicio);
     	System.out.println("Data do fim do acidente: " + this._fim);

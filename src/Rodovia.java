@@ -49,6 +49,14 @@ public class Rodovia {
     }
 
     /**
+     * Método get dos acidentes da rodovia.
+     * @return a lista de acidentes.
+     */
+    public List<Acidente> get_acidentes() {
+        return this._acidentes;
+    }
+
+    /**
      * Método para imprimir os dados da rodovia para o usuário.
      */
     public void mostrarDados() {
