@@ -107,21 +107,30 @@ public class Main {
                     case "r":
                         rodoviaTemp = addRodovia(empresas);
                         rodovias.add(rodoviaTemp);
+                        System.out.println("Rodovia " + rodoviaTemp.get_nome() + " adicionada com sucesso!");
                         break;
                     case "s":
                         for (int i = 0; i < empresas.size(); i++) {
                             System.out.println("(" + (i + 1) + ")" + " empresa " + empresas.get(i).get_nome());
                         }
                         index = sc.nextInt();
-                        if (index > empresas.size() || index <= 0) {
+                        if ( index <= 0 || index > empresas.size()) {
                             System.out.println("Empresa inválida!");
                         } else {
                             empresaTemp = empresas.get(index - 1);
                             System.out.println("(a) Adicionar funcionário;");
                             System.out.println("(d) Demitir funcionário;");
+                            System.out.println("(l) Listar funcionários;");
                             op = sc.next();
                             switch (op) {
                                 case "l":
+                                    List<Funcionario> funcionarioListaTemp = empresaTemp.get_funcionarios();
+                                    System.out.println("------ Funcionário ------");
+                                    funcionarioListaTemp.forEach(f ->{
+                                        f.mostrarDados();
+                                        System.out.println("------");
+                                    });
+                                    System.out.println("--------------------------");
                                     break;
                                 case "a":
                                     funcionarioTemp = addFuncionario();
@@ -170,8 +179,10 @@ public class Main {
         String cpf = sc.nextLine();
         System.out.println("Idade do funcionário:");
         int idade = sc.nextInt();
+        sc.nextLine();
         System.out.println("Salário do funcionário:");
-        double salario = sc.nextDouble();
+        String salarioTemp = sc.nextLine();
+        double salario = Double.parseDouble(salarioTemp);
         return new Funcionario(nome, cpf, idade, salario, cargo);
     }
 
@@ -199,16 +210,16 @@ public class Main {
         double extensao = sc.nextDouble();
         System.out.println("Selecione uma das empresas cadastradas:");
         int index = -1;
-        while (index < 0 || index >= empresas.size()) {
-            for (int i = 0; i < empresas.size(); i++) {
-                System.out.println("(" + (i + 1) + ")" + " empresa " + empresas.get(i).get_nome());
+        while (index <= 0 || index > empresas.size()) {
+            for (int i = 1; i <= empresas.size(); i++) {
+                System.out.println("(" + (i) + ")" + " empresa " + empresas.get(i - 1).get_nome());
             }
             index = sc.nextInt();
             if (index <= 0 || index > empresas.size()) {
                 System.out.println("Empresa inválida!");
             }
         }
-        return new Rodovia(nome, extensao, empresas.get(index));
+        return new Rodovia(nome, extensao, empresas.get(index - 1));
     }
 
     /**
@@ -218,26 +229,43 @@ public class Main {
 
     private static Acidente addAcidente() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Quantidade de mortos:");
-        int mortos = sc.nextInt();
-        System.out.println("Quanditade de feridos:");
-        int feridos = sc.nextInt();
+        System.out.println("Teve vítimas? (s/n)");
+        String teveVitimas = sc.next();
+        sc.nextLine();
+        int qntVitimas = 0;
+        List<Vitima> vitimas = new ArrayList<Vitima>();
+        if (teveVitimas.equals("s")) {
+            System.out.println("Quanditade de vítimas:");
+            qntVitimas = sc.nextInt();
+            sc.nextLine();
+            EStatus[] status = {EStatus.Morto, EStatus.Grave, EStatus.Ferimentos};
+            String[] descStatus = {"(1) Morto;", "(2) Grave;", "(3) Ferido;"};
+            for (int i = 0; i < qntVitimas; ++i) {
+                System.out.println("Nome da vítima:");
+                String nome = sc.nextLine();
+                System.out.println("CPF da vítima:");
+                String cpf = sc.nextLine();
+                System.out.println("Idade da vítima");
+                int idade = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Estatdo da vítima:");
+                for(int j = 0; j < status.length; j++) {
+                    System.out.println(descStatus[j]);
+                }
+                int statusVitima = sc.nextInt();
+                sc.nextLine();
+                Vitima vitimaTemp = new Vitima(nome, cpf, idade, status[statusVitima - 1]);
+                vitimas.add(vitimaTemp);
+            }
+        }
         System.out.println("Descrição do acidente:");
         String descricao = sc.nextLine();
-        System.out.println("Data do início do acidente (formato \"dd/mm/yyyy\"):");
+        System.out.println("Hora do início do acidente (formato: hh:mm):");
         String dataInicioS = sc.nextLine();
-        System.out.println("Data do fim do acidente e liberação do trecho (formato \"dd/mm/yyyy\"):");
+        System.out.println("Hora do fim do acidente e liberação do trecho(formato: hh:mm): ");
         String dataFimS = sc.nextLine();
         DateFormat dataFormato = DateFormat.getInstance();
-        Date dataInicio = null;
-        Date dataFim = null;
-        try {
-            dataInicio = dataFormato.parse(dataInicioS);
-            dataFim = dataFormato.parse(dataFimS);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-        return new Acidente(feridos, mortos, descricao, dataInicio, dataFim);
+        return new Acidente(qntVitimas,  descricao, dataInicioS, dataFimS, vitimas);
     }
 
     /**
@@ -253,7 +281,6 @@ public class Main {
         System.out.println("Digite os valores:");
         EVeiculo veiculo[] = {EVeiculo.MOTO, EVeiculo.CARRO, EVeiculo.PICKUP, EVeiculo.CAMINHAO};
         String veiculoNome[] = {"moto", "carro", "pickup", "caminhão"};
-        double valores[] = new double[4];
         for(int i = 0; i < 4; ++i) {
             System.out.println("Preço do pedágio para " + veiculoNome[i] + ":");
             double valor = sc.nextDouble();

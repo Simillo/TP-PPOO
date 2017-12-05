@@ -42,6 +42,14 @@ public class Empresa {
     }
 
     /**
+     * Método get dos funcionários da empresa.
+     * @return lista de funcionário.
+     */
+    public List<Funcionario> get_funcionarios() {
+        return this._funcionarios;
+    }
+
+    /**
      * Método get do nome da empresa.
      * @return o nome da empresa.
      */
