@@ -14,6 +14,9 @@ public class Vitima extends Pessoa{
 
     /**
      * Construtor do objeto.
+     * @param nome nome da vítima.
+     * @param cpf cpf da vítima.
+     * @param idade idade da vítima.
      * @param status status da vítima.
      */
     public Vitima (String nome, String cpf, int idade, EStatus status) {

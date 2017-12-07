@@ -8,6 +8,9 @@ public class Funcionario extends Pessoa{
 
     /**
      * Construtor do objeto.
+     * @param nome nome do funcionário.
+     * @param cpf cpf do funcionário.
+     * @param idade salário do funcionario.
      * @param salario salário do funcionário.
      * @param cargo cargo do funcionário.
      */

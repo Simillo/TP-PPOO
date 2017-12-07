@@ -15,8 +15,9 @@ public class Acidente {
      * Construtor do objeto.
      * @param qntVitimas quantidade de vítimas.
      * @param descricao descrição do acidente.
-     * @param inicio data início do acidente.
-     * @param fim data fim do acidente.
+     * @param inicio hora início do acidente.
+     * @param fim hora fim do acidente.
+     * @param vitimas lista de vítimas.
      */
     public Acidente (int qntVitimas, String descricao, String inicio, String fim, List<Vitima> vitimas) {
         this._qntVitimas = qntVitimas;
