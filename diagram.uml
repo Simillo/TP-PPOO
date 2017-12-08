@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-188.76230899830216" y="416.16468590831926">Pedagio</node>
+    <node x="197.0" y="157.0">Vitima</node>
+    <node x="-175.65874363327674" y="-4.5212224108658745">Empresa</node>
+    <node x="341.0" y="272.4550084889644">Acidente</node>
+    <node x="125.5" y="0.0">Pessoa</node>
+    <node x="-146.55857385398983" y="280.7843803056027">EVeiculo</node>
+    <node x="0.0" y="146.0">Funcionario</node>
+    <node x="-144.65874363327674" y="156.59252971137522">EStatus</node>
+    <node x="383.19694397283524" y="8.950764006791161">Rodovia</node>
+    <node x="1.11884550084892" y="274.69269949066216">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Vitima" target="Pessoa">
+      <point x="0.0" y="-37.0" />
+      <point x="285.5" y="121.0" />
+      <point x="217.75" y="121.0" />
+      <point x="30.75" y="48.0" />
+    </edge>
+    <edge source="Funcionario" target="Pessoa">
+      <point x="0.0" y="-48.0" />
+      <point x="88.5" y="121.0" />
+      <point x="156.25" y="121.0" />
+      <point x="-30.75" y="48.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8937784522003035" x="287.40831918505944" y="299.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
